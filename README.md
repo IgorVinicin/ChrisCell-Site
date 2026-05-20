@@ -3,7 +3,7 @@
 Site da **Chriscell**, assistência técnica especializada em smartphones localizada em São José dos Campos. O projeto reúne em um único lugar: vitrine de serviços, formulário de orçamento, loja de acessórios com carrinho integrado e um painel administrativo para gerenciar produtos.
 
 > Instagram: [@chriscell.sjc](https://instagram.com/chriscell.sjc)
-> WhatsApp: (12) 98114-9421
+> 
 
 ---
 
@@ -60,24 +60,6 @@ src/
 - Cadastro, edição e remoção de produtos com upload de imagem
 - Fluxo completo de **"esqueci minha senha"** com email de recuperação e página `/reset-password`
 - Imagens responsivas (640w / 1024w / 1600w) com placeholder em base64 (blur-up)
-
----
-
-## Como rodar localmente
-
-Pré-requisito: Node 18+ e [bun](https://bun.sh) (ou npm/pnpm).
-
-```bash
-bun install
-bun run dev
-```
-
-O `.env` é gerado automaticamente pela integração com o Lovable Cloud e contém as variáveis `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` e `VITE_SUPABASE_PROJECT_ID`. Não é necessário configurar nada manualmente.
-
-```bash
-bun run build      # build de produção
-bun run preview    # preview local do build
-```
 
 ---
 
