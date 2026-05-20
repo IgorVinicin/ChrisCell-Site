@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand palette: #040f36 (deep navy), #4b3e7b (royal purple), #d2c8ed (lavender) */
+    --background: 227 86% 11%;
+    --foreground: 256 51% 92%;
+
+    --card: 227 60% 15%;
+    --card-foreground: 256 51% 92%;
+
+    --popover: 227 60% 15%;
+    --popover-foreground: 256 51% 92%;
+
+    --primary: 253 33% 36%;
+    --primary-foreground: 256 51% 96%;
+
+    --secondary: 227 45% 18%;
+    --secondary-foreground: 256 40% 88%;
+
+    --muted: 227 40% 20%;
+    --muted-foreground: 256 25% 70%;
+
+    --accent: 256 51% 86%;
+    --accent-foreground: 227 86% 11%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 253 25% 28%;
+    --input: 253 25% 28%;
+    --ring: 253 33% 50%;
+
+    --radius: 0.75rem;
+
+    /* Brand tokens */
+    --brand-navy: 227 86% 11%;
+    --brand-purple: 253 33% 36%;
+    --brand-lavender: 256 51% 86%;
+    --brand-purple-light: 253 40% 55%;
+
+    --glow-primary: 0 0 20px hsl(253 33% 50% / 0.35);
+    --glow-primary-strong: 0 0 40px hsl(253 40% 55% / 0.55);
+    --surface-glass: hsl(227 60% 15% / 0.8);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --sidebar-background: 227 70% 13%;
+    --sidebar-foreground: 256 51% 92%;
+    --sidebar-primary: 253 33% 36%;
+    --sidebar-primary-foreground: 256 51% 96%;
+    --sidebar-accent: 227 45% 18%;
+    --sidebar-accent-foreground: 256 51% 92%;
+    --sidebar-border: 253 25% 28%;
+    --sidebar-ring: 253 33% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+  .glow-primary-strong {
+    box-shadow: var(--glow-primary-strong);
+  }
+  .glass-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border));
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(256 51% 86%), hsl(253 40% 65%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .border-gradient {
+    border-image: linear-gradient(135deg, hsl(253 33% 36%), hsl(256 51% 86%)) 1;
+  }
+  .bg-brand-gradient {
+    background: linear-gradient(135deg, hsl(227 86% 11%), hsl(253 33% 36%), hsl(256 51% 60%));
+  }
+}

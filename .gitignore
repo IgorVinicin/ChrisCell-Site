@@ -1,0 +1,111 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+dist
+dist-ssr
+*.local
+bun.lockb
+
+# Environment variables - MUITO IMPORTANTE
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development.local
+.env.test.local
+
+# Supabase & Backend
+supabase/.env
+supabase/.env.local
+supabase/migrations/.env
+.supabase
+
+# API Keys e Credenciais
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+.aws/
+.credentials
+credentials.json
+token.json
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# IDE - Rider, WebStorm, PhpStorm
+.gradle
+.project
+.classpath
+.c9/
+
+# Arquivos de build
+build/
+out/
+.next/
+.cache/
+.coverage/
+
+# OS temporários
+Thumbs.db
+.temp/
+tmp/
+
+# Dependências do build
+.bun/
+
+# Variáveis secretas
+.secrets
+secrets/
+.private
+
+# Certificados SSL
+*.crt
+*.cer
+*.der
+
+# Backup files
+*.backup
+*.bak
+~*
+
+# MacOS
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Desktop.ini
+$RECYCLE.BIN/
+
+# Histórico de deploy
+.deployment
+deployment.json
+
+# Arquivos de testes locais
+coverage/
+.nyc_output/
+
+# Arquivos de lock específicos do projeto
+*.lock
+yarn.lock
+pnpm-lock.yaml
