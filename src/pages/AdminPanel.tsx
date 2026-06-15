@@ -9,6 +9,7 @@ import { Trash2, Pencil, Plus, LogOut, Upload } from "lucide-react";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter,
 } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
 import logo from "@/assets/logo-chriscell.png";
 
 interface Product {
@@ -17,6 +18,7 @@ interface Product {
   price: number;
   image_url: string | null;
   category: string;
+  description?: string | null;
 }
 
 const CATEGORIES = ["Capinhas", "Películas", "Carregadores", "Cabos", "Fones", "Outros"];
@@ -27,7 +29,7 @@ const AdminPanel = () => {
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editing, setEditing] = useState<Product | null>(null);
-  const [form, setForm] = useState({ name: "", price: "", category: "Capinhas", image_url: "" });
+  const [form, setForm] = useState({ name: "", price: "", category: "Capinhas", image_url: "", description: "" });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -56,14 +58,20 @@ const AdminPanel = () => {
 
   const openNew = () => {
     setEditing(null);
-    setForm({ name: "", price: "", category: "Capinhas", image_url: "" });
+    setForm({ name: "", price: "", category: "Capinhas", image_url: "", description: "" });
     setImageFile(null);
     setDialogOpen(true);
   };
 
   const openEdit = (p: Product) => {
     setEditing(p);
-    setForm({ name: p.name, price: String(p.price), category: p.category, image_url: p.image_url || "" });
+    setForm({
+      name: p.name,
+      price: String(p.price),
+      category: p.category,
+      image_url: p.image_url || "",
+      description: p.description || "",
+    });
     setImageFile(null);
     setDialogOpen(true);
   };
@@ -95,6 +103,7 @@ const AdminPanel = () => {
       price: parseFloat(form.price.replace(",", ".")),
       category: form.category,
       image_url: imageUrl || null,
+      description: form.description || null,
     };
 
     if (editing) {
@@ -199,6 +208,14 @@ const AdminPanel = () => {
               >
                 {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
               </select>
+            </div>
+            <div>
+              <Label>Descrição</Label>
+              <Textarea
+                value={form.description}
+                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                placeholder="Detalhes sobre o produto, especificações, etc..."
+              />
             </div>
             <div>
               <Label>Imagem</Label>

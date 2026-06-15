@@ -9,7 +9,7 @@ export interface CartItem {
 
 interface CartContextType {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, "quantity">) => void;
+  addItem: (item: Omit<CartItem, "quantity">, quantity?: number) => void;
   removeItem: (name: string) => void;
   updateQuantity: (name: string, quantity: number) => void;
   clearCart: () => void;
@@ -30,11 +30,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const addItem = (item: Omit<CartItem, "quantity">) => {
+  const addItem = (item: Omit<CartItem, "quantity">, quantity: number = 1) => {
     setItems((prev) => {
       const existing = prev.find((i) => i.name === item.name);
-      if (existing) return prev.map((i) => i.name === item.name ? { ...i, quantity: i.quantity + 1 } : i);
-      return [...prev, { ...item, quantity: 1 }];
+      if (existing) return prev.map((i) => i.name === item.name ? { ...i, quantity: i.quantity + quantity } : i);
+      return [...prev, { ...item, quantity }];
     });
   };
 
