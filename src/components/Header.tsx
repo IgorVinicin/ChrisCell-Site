@@ -14,7 +14,8 @@ const navItems = [
 const Header = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const { totalItems, setIsOpen: openCart } = useCart();
+  const { totalItems, setIsOpen: openCart, isDbOffline } = useCart();
+  const visibleNavItems = navItems.filter(item => !(item.path === "/loja" && isDbOffline));
 
   return (
     <header className="fixed inset-x-4 top-4 z-40 rounded-3xl border border-border/50 bg-card/95 shadow-2xl shadow-primary/10 backdrop-blur-2xl supports-[backdrop-filter]:bg-card/90 md:inset-x-0 md:top-0 md:rounded-b-[2.5rem]">
@@ -37,7 +38,7 @@ const Header = () => {
         </Link>
 
         <nav className="hidden items-center gap-2 md:flex">
-          {navItems.map((item) => {
+          {visibleNavItems.map((item) => {
             const Icon = item.icon;
             const active = location.pathname === item.path;
             return (
@@ -64,32 +65,38 @@ const Header = () => {
           >
             Fazer orçamento
           </Link>
-          <button onClick={() => openCart(true)} className="relative text-muted-foreground hover:text-primary transition-colors">
-            <ShoppingCart className="h-5 w-5" />
-            {totalItems > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-                {totalItems}
-              </span>
-            )}
-          </button>
+          {!isDbOffline && (
+            <button onClick={() => openCart(true)} className="relative text-muted-foreground hover:text-primary transition-colors">
+              <ShoppingCart className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+          )}
         </nav>
 
         <div className="flex items-center gap-2 md:hidden">
-          <Link
-            to="/loja"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:brightness-110"
-          >
-            <ShoppingBag className="h-4 w-4" />
-            Loja
-          </Link>
-          <button onClick={() => openCart(true)} className="relative text-foreground">
-            <ShoppingCart className="h-5 w-5" />
-            {totalItems > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-                {totalItems}
-              </span>
-            )}
-          </button>
+          {!isDbOffline && (
+            <>
+              <Link
+                to="/loja"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:brightness-110"
+              >
+                <ShoppingBag className="h-4 w-4" />
+                Loja
+              </Link>
+              <button onClick={() => openCart(true)} className="relative text-foreground">
+                <ShoppingCart className="h-5 w-5" />
+                {totalItems > 0 && (
+                  <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
+                    {totalItems}
+                  </span>
+                )}
+              </button>
+            </>
+          )}
           <button onClick={() => setOpen(!open)} className="text-foreground" aria-label="Menu">
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -105,7 +112,7 @@ const Header = () => {
             className="overflow-hidden border-t border-border/50 bg-background/95 backdrop-blur-xl md:hidden"
           >
             <div className="container flex flex-col gap-3 py-4">
-              {navItems.map((item) => {
+              {visibleNavItems.map((item) => {
                 const Icon = item.icon;
                 const active = location.pathname === item.path;
                 return (

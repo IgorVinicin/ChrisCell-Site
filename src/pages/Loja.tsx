@@ -44,7 +44,7 @@ const Loja = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const { data } = await supabase.from("products").select("*").order("created_at", { ascending: false });
+      const { data } = await supabase.from("products").select("*").eq("active", true).order("created_at", { ascending: false });
       setProducts(data || []);
       setLoading(false);
     };
@@ -52,8 +52,13 @@ const Loja = () => {
   }, []);
 
   const handleAdd = (p: Product) => {
-    addItem({ name: p.name, price: formatPrice(p.price), img: p.image_url || productCase });
-    toast({ title: "Adicionado ao carrinho!", description: p.name });
+    // Note: p.stock_quantity is checked on type cast if it exists. In current typescript types we will cast to any or just retrieve if it exists.
+    const prod = p as any;
+    if (prod.stock_quantity !== undefined && prod.stock_quantity <= 0) {
+      toast({ title: "Sem estoque", description: "Este produto está indisponível no momento.", variant: "destructive" });
+      return;
+    }
+    addItem({ id: p.id, name: p.name, price: p.price, img: p.image_url || productCase });
   };
 
   return (
@@ -132,9 +137,10 @@ const Loja = () => {
                         </button>
                         <button
                           onClick={() => handleAdd(p)}
-                          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground transition-all hover:glow-primary"
+                          disabled={p.stock_quantity !== undefined && p.stock_quantity <= 0}
+                          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground transition-all hover:glow-primary disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          <Plus className="h-4 w-4" /> Carrinho
+                          <Plus className="h-4 w-4" /> {p.stock_quantity !== undefined && p.stock_quantity <= 0 ? "Esgotado" : "Carrinho"}
                         </button>
                       </div>
                     </div>
@@ -209,24 +215,21 @@ const Loja = () => {
                     </div>
                   </div>
 
-                  {/* Add to Cart button */}
                   <Button
                     onClick={() => {
                       addItem({
+                        id: selectedProduct.id,
                         name: selectedProduct.name,
-                        price: formatPrice(selectedProduct.price),
+                        price: selectedProduct.price,
                         img: selectedProduct.image_url || productCase
                       }, quantity);
-                      toast({
-                        title: "Adicionado ao carrinho!",
-                        description: `${quantity}x ${selectedProduct.name}`,
-                      });
                       setSelectedProduct(null);
                     }}
+                    disabled={(selectedProduct as any).stock_quantity !== undefined && (selectedProduct as any).stock_quantity <= 0}
                     className="w-full gap-2 text-sm font-semibold py-5"
                     size="lg"
                   >
-                    <ShoppingCart className="h-4 w-4" /> Adicionar ao carrinho
+                    <ShoppingCart className="h-4 w-4" /> {selectedProduct.stock_quantity !== undefined && selectedProduct.stock_quantity <= 0 ? "Produto Esgotado" : "Adicionar ao carrinho"}
                   </Button>
                 </div>
               </div>

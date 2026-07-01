@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import logo from "@/assets/logo-chriscell.png";
+import { useCart } from "@/contexts/CartContext";
 
 const AdminLogin = () => {
+  const { isDbOffline } = useCart();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -78,6 +80,15 @@ const AdminLogin = () => {
               : "Enviaremos um link de redefinição para seu email"}
           </p>
         </div>
+ 
+        {isDbOffline && (
+          <div className="rounded-lg bg-destructive/10 border border-destructive/30 p-3 text-xs text-destructive text-center leading-relaxed">
+            <strong>⚠️ Banco de Dados Suspenso:</strong>
+            <p className="mt-1">
+              O banco de dados gratuito do Supabase foi pausado por inatividade. Acesse o console do Supabase e clique em <em>Restore project</em> para reativar o sistema.
+            </p>
+          </div>
+        )}
 
         {mode === "login" ? (
           <>

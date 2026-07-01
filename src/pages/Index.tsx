@@ -14,6 +14,7 @@ import heroBg1024 from "@/assets/real-service-1-1024.jpg";
 import heroBg640 from "@/assets/real-service-1-640.jpg";
 import heroPhone from "@/assets/hero-phone-clean.png";
 import mascot from "@/assets/mascot-chriscell.png";
+import SEO from "@/components/SEO";
 
 import serviceScreen from "@/assets/real-service-screen.jpg";
 import serviceScreen1024 from "@/assets/real-service-screen-1024.jpg";
@@ -70,6 +71,7 @@ const Index = () => {
   const { totalItems, setIsOpen: openCart } = useCart();
   return (
   <>
+    <SEO />
     <CartDrawer />
     <WhatsAppFloat />
 

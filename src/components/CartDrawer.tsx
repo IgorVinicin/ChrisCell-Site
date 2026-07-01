@@ -1,28 +1,21 @@
-import { ShoppingCart, Minus, Plus, Trash2, MessageCircle } from "lucide-react";
+import { ShoppingCart, Minus, Plus, Trash2, ArrowRight } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
-
-const WHATSAPP_NUMBER = "5512981149421";
-
-const parsePrice = (price: string) => {
-  return parseFloat(price.replace("R$", "").replace(".", "").replace(",", ".").trim());
-};
+import { useNavigate } from "react-router-dom";
 
 const formatPrice = (value: number) =>
   value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
 const CartDrawer = () => {
-  const { items, removeItem, updateQuantity, clearCart, totalItems, isOpen, setIsOpen } = useCart();
+  const { items, removeItem, updateQuantity, totalItems, isOpen, setIsOpen } = useCart();
+  const navigate = useNavigate();
 
-  const total = items.reduce((sum, i) => sum + parsePrice(i.price) * i.quantity, 0);
+  const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
-  const handleWhatsAppCheckout = () => {
-    const lines = items.map((i) => `• ${i.quantity}x ${i.name} - ${i.price} cada`);
-    const msg = `Olá! Gostaria de comprar:\n\n${lines.join("\n")}\n\n*Total: ${formatPrice(total)}*\n\nPodemos combinar o pagamento?`;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
-    clearCart();
+  const handleCheckout = () => {
     setIsOpen(false);
+    navigate("/checkout");
   };
 
   return (
@@ -41,29 +34,29 @@ const CartDrawer = () => {
         ) : (
           <div className="flex flex-1 flex-col gap-4 overflow-y-auto py-4">
             {items.map((item) => (
-              <div key={item.name} className="flex gap-3 rounded-lg border border-border/50 bg-card p-3">
+              <div key={item.id} className="flex gap-3 rounded-lg border border-border/50 bg-card p-3">
                 <img src={item.img} alt={item.name} className="h-16 w-16 rounded-md object-cover" />
                 <div className="flex flex-1 flex-col justify-between">
                   <div>
                     <p className="text-sm font-semibold text-foreground">{item.name}</p>
-                    <p className="text-sm font-bold text-primary">{item.price}</p>
+                    <p className="text-sm font-bold text-primary">{formatPrice(item.price)}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => updateQuantity(item.name, item.quantity - 1)}
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
                       className="rounded-md border border-border p-1 text-muted-foreground hover:text-foreground"
                     >
                       <Minus className="h-3 w-3" />
                     </button>
                     <span className="min-w-[1.5rem] text-center text-sm font-medium">{item.quantity}</span>
                     <button
-                      onClick={() => updateQuantity(item.name, item.quantity + 1)}
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       className="rounded-md border border-border p-1 text-muted-foreground hover:text-foreground"
                     >
                       <Plus className="h-3 w-3" />
                     </button>
                     <button
-                      onClick={() => removeItem(item.name)}
+                      onClick={() => removeItem(item.id)}
                       className="ml-auto rounded-md p-1 text-destructive hover:bg-destructive/10"
                     >
                       <Trash2 className="h-4 w-4" />
@@ -81,8 +74,8 @@ const CartDrawer = () => {
               <span>Total:</span>
               <span className="text-primary">{formatPrice(total)}</span>
             </div>
-            <Button onClick={handleWhatsAppCheckout} className="w-full gap-2" size="lg">
-              <MessageCircle className="h-5 w-5" /> Finalizar compra via WhatsApp
+            <Button onClick={handleCheckout} className="w-full gap-2" size="lg">
+              Finalizar Compra <ArrowRight className="h-5 w-5" />
             </Button>
           </SheetFooter>
         )}
