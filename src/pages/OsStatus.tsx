@@ -5,7 +5,7 @@ import { CheckCircle2, Circle, Search, Package, ArrowLeft, Smartphone, ShieldChe
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SEO from "@/components/SEO";
-import { maskCPF } from "@/lib/utils";
+import { maskPhone } from "@/lib/utils";
 
 // Define OS steps
 const STEPS = [
@@ -37,7 +37,7 @@ export default function OsStatus() {
     const { data, error: sbError } = await supabase
       .from("service_orders")
       .select("*")
-      .eq("customer_cpf", osId)
+      .eq("customer_phone", osId)
       .order("created_at", { ascending: false })
       .limit(1)
       .maybeSingle();
@@ -83,14 +83,14 @@ export default function OsStatus() {
               Acompanhar Reparo
             </h1>
             <p className="mb-8 text-center text-sm text-muted-foreground">
-              Digite o seu CPF para ver o andamento do conserto do seu aparelho.
+              Digite o seu Telefone para ver o andamento do conserto do seu aparelho.
             </p>
             <form onSubmit={handleSearch} className="space-y-4">
               <Input
-                placeholder="000.000.000-00"
+                placeholder="(12) 99999-9999"
                 value={searchId}
-                maxLength={14}
-                onChange={(e) => setSearchId(maskCPF(e.target.value))}
+                maxLength={15}
+                onChange={(e) => setSearchId(maskPhone(e.target.value))}
                 className="h-12 font-mono text-center text-lg tracking-wider"
               />
               <Button type="submit" className="h-12 w-full glow-primary">
@@ -132,8 +132,8 @@ export default function OsStatus() {
                 <p className="text-muted-foreground mt-1 text-sm">OS de {os.customer_name}</p>
               </div>
               <div className="text-right">
-                <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground mb-1">CPF do Cliente</p>
-                <p className="font-mono text-xs text-foreground bg-background/50 p-2 rounded border border-border/50">{os.customer_cpf}</p>
+                <p className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground mb-1">Telefone do Cliente</p>
+                <p className="font-mono text-xs text-foreground bg-background/50 p-2 rounded border border-border/50">{os.customer_phone}</p>
               </div>
             </div>
 

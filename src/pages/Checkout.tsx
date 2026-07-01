@@ -225,9 +225,9 @@ const Checkout = () => {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-24 pb-12 bg-background">
+      <main className="min-h-screen pt-32 pb-24 md:pt-40 md:pb-32 bg-background/50">
         <div className="container max-w-6xl">
-          <Button variant="ghost" onClick={() => navigate("/loja")} className="mb-6 gap-2">
+          <Button variant="ghost" onClick={() => navigate("/loja")} className="mb-8 gap-2 hover:bg-background/80 rounded-full px-6 transition-all duration-300">
             <ArrowLeft className="h-4 w-4" /> Voltar para Loja
           </Button>
 
@@ -240,11 +240,11 @@ const Checkout = () => {
               className="space-y-6"
             >
               {/* Step 1: Identification */}
-              <div className="rounded-2xl border border-border/50 bg-card p-6 shadow-sm">
-                <h2 className="flex items-center gap-2 font-display text-lg font-bold text-foreground mb-4">
-                  <User className="h-5 w-5 text-primary" /> 1. Seus Dados
+              <div className="rounded-[2rem] border border-border/20 bg-background/30 p-8 md:p-10 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] transition-all duration-500 hover:bg-background/50 hover:-translate-y-1">
+                <h2 className="flex items-center gap-3 font-display text-2xl font-extrabold tracking-tight text-foreground mb-6">
+                  <User className="h-6 w-6 text-primary" /> 1. Seus Dados
                 </h2>
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-5 sm:grid-cols-2">
                   <div className="relative">
                     <User className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <input
@@ -286,7 +286,7 @@ const Checkout = () => {
                       maxLength={14}
                       value={form.cpf}
                       onChange={handleInputChange}
-                      className="rounded-xl border border-border/60 bg-background/60 px-4 py-3.5 text-sm"
+                      className="rounded-xl border border-border/60 bg-background/60 px-4 py-3.5 text-sm backdrop-blur-sm focus:bg-background/80"
                       placeholder="CPF (Apenas números)"
                     />
                   </div>
@@ -294,11 +294,11 @@ const Checkout = () => {
               </div>
 
               {/* Step 2: Shipping/Delivery Address */}
-              <div className="rounded-2xl border border-border/50 bg-card p-6 shadow-sm">
-                <h2 className="flex items-center gap-2 font-display text-lg font-bold text-foreground mb-4">
-                  <MapPin className="h-5 w-5 text-primary" /> 2. Endereço de Entrega
+              <div className="rounded-[2rem] border border-border/20 bg-background/30 p-8 md:p-10 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] transition-all duration-500 hover:bg-background/50 hover:-translate-y-1">
+                <h2 className="flex items-center gap-3 font-display text-2xl font-extrabold tracking-tight text-foreground mb-6">
+                  <MapPin className="h-6 w-6 text-primary" /> 2. Endereço de Entrega
                 </h2>
-                <div className="grid gap-4 sm:grid-cols-3">
+                <div className="grid gap-5 sm:grid-cols-3">
                   <div className="sm:col-span-1">
                     <Label htmlFor="cep">CEP</Label>
                     <Input
@@ -388,20 +388,20 @@ const Checkout = () => {
               </div>
 
               {/* Step 3: Payment Method */}
-              <div className="rounded-2xl border border-border/50 bg-card p-6 shadow-sm">
-                <h2 className="flex items-center gap-2 font-display text-lg font-bold text-foreground mb-4">
-                  <CreditCard className="h-5 w-5 text-primary" /> 3. Forma de Pagamento
+              <div className="rounded-[2rem] border border-border/20 bg-background/30 p-8 md:p-10 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] transition-all duration-500 hover:bg-background/50 hover:-translate-y-1">
+                <h2 className="flex items-center gap-3 font-display text-2xl font-extrabold tracking-tight text-foreground mb-6">
+                  <CreditCard className="h-6 w-6 text-primary" /> 3. Forma de Pagamento
                 </h2>
 
-                <div className="grid grid-cols-1 gap-4 mb-6">
+                <div className="grid grid-cols-1 gap-5 mb-6">
                   <button
                     type="button"
                     onClick={() => setPaymentMethod("pix")}
-                    className="flex flex-col items-center justify-center p-4 rounded-xl border border-primary bg-primary/5 text-primary font-semibold w-full"
+                    className="flex flex-col items-center justify-center p-6 rounded-2xl border-2 border-primary/40 bg-primary/10 text-primary font-bold w-full transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-lg"
                   >
-                    <DollarSign className="h-6 w-6 mb-2" />
-                    <span>PIX Automático</span>
-                    <span className="text-[10px] opacity-80 mt-1">Confirmação na hora</span>
+                    <DollarSign className="h-8 w-8 mb-2" />
+                    <span className="text-lg">PIX Automático</span>
+                    <span className="text-xs opacity-80 mt-1 font-light tracking-wider uppercase">Confirmação na hora</span>
                   </button>
                 </div>
               </div>
@@ -409,9 +409,9 @@ const Checkout = () => {
 
             {/* Right Column: Order Summary */}
             <div className="space-y-6">
-              <div className="rounded-2xl border border-border/50 bg-card p-6 shadow-sm">
-                <h2 className="font-display text-lg font-bold text-foreground mb-4">Resumo do Pedido</h2>
-                <div className="max-h-72 overflow-y-auto space-y-3 mb-6 pr-1 scrollbar-thin">
+              <div className="rounded-[2rem] border border-border/20 bg-background/30 p-8 md:p-10 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] transition-all duration-500 hover:bg-background/50 hover:-translate-y-1 sticky top-32">
+                <h2 className="font-display text-2xl font-extrabold tracking-tight text-foreground mb-6">Resumo do Pedido</h2>
+                <div className="max-h-96 overflow-y-auto space-y-4 mb-8 pr-2 scrollbar-thin">
                   {items.map((item) => (
                     <div key={item.id} className="flex gap-3 items-center">
                       <img src={item.img} alt={item.name} className="h-12 w-12 rounded object-cover border border-border/30" />
@@ -437,7 +437,7 @@ const Checkout = () => {
                       <span className="font-medium">{formatPrice(freightCost)}</span>
                     )}
                   </div>
-                  <div className="border-t border-border/40 pt-2 flex justify-between text-base font-bold">
+                  <div className="border-t border-border/20 pt-4 flex justify-between text-2xl font-extrabold">
                     <span>Total</span>
                     <span className="text-primary">{formatPrice(total)}</span>
                   </div>
@@ -446,7 +446,7 @@ const Checkout = () => {
                 <Button
                   onClick={handleCheckoutSubmit}
                   disabled={loading}
-                  className="w-full mt-6 py-6 font-semibold"
+                  className="w-full mt-8 py-7 text-sm font-bold tracking-wider uppercase rounded-xl transition-transform hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_hsl(var(--primary))]"
                 >
                   {loading ? (
                     <>

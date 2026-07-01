@@ -7,7 +7,6 @@ import logo from "@/assets/logo-chriscell.png";
 
 const navItems = [
   { label: "Início", path: "/", icon: Home },
-  { label: "Orçamento", path: "/orcamento", icon: ClipboardList },
   { label: "Loja", path: "/loja", icon: ShoppingBag },
 ];
 
@@ -18,11 +17,11 @@ const Header = () => {
   const visibleNavItems = navItems.filter(item => !(item.path === "/loja" && isDbOffline));
 
   return (
-    <header className="fixed inset-x-4 top-4 z-40 rounded-3xl border border-border/50 bg-card/95 shadow-2xl shadow-primary/10 backdrop-blur-2xl supports-[backdrop-filter]:bg-card/90 md:inset-x-0 md:top-0 md:rounded-b-[2.5rem]">
+    <header className="fixed inset-x-4 top-4 z-40 rounded-full border border-border/20 bg-background/40 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] backdrop-blur-3xl md:inset-x-8 md:top-6 lg:inset-x-auto lg:left-1/2 lg:-translate-x-1/2 lg:w-full lg:max-w-5xl">
       {/* subtle gradient accent line */}
       <div className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center justify-between px-6">
         <Link to="/" className="group flex items-center gap-2.5">
           <div className="relative">
             <div className="absolute inset-0 rounded-lg bg-primary/30 opacity-0 blur-md transition-opacity duration-500 group-hover:opacity-100" />
@@ -32,7 +31,7 @@ const Header = () => {
               className="relative h-10 w-10 rounded-lg object-cover ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-105"
             />
           </div>
-          <span className="font-display text-xl font-bold tracking-tight text-foreground">
+          <span className="font-display text-2xl font-extrabold tracking-tight text-foreground">
             CHRIS<span className="text-gradient">CELL</span>
           </span>
         </Link>
@@ -61,7 +60,7 @@ const Header = () => {
           })}
           <Link
             to="/orcamento"
-            className="ml-3 rounded-full bg-gradient-to-r from-primary to-primary/80 px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 ring-1 ring-white/10 transition-all hover:shadow-primary/40 hover:brightness-110"
+            className="ml-3 rounded-full border-2 border-primary/50 bg-primary/10 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-[0_10px_30px_-10px_hsl(var(--primary))] hover:-translate-y-0.5"
           >
             Fazer orçamento
           </Link>
@@ -82,7 +81,7 @@ const Header = () => {
             <>
               <Link
                 to="/loja"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:brightness-110"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-primary/50 bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
               >
                 <ShoppingBag className="h-4 w-4" />
                 Loja
@@ -134,7 +133,7 @@ const Header = () => {
               <Link
                 to="/orcamento"
                 onClick={() => setOpen(false)}
-                className="mt-2 rounded-2xl bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:brightness-110"
+                className="mt-4 rounded-full border-2 border-primary/50 bg-primary/10 px-4 py-4 text-center text-xs font-bold uppercase tracking-[0.2em] text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-[0_10px_30px_-10px_hsl(var(--primary))]"
               >
                 Fazer orçamento
               </Link>

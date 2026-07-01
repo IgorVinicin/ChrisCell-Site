@@ -48,11 +48,11 @@ const Orcamento = () => {
       <Header />
       <WhatsAppFloat />
       <main className="min-h-screen pt-16">
-        <section className="px-3 py-10 md:px-8 md:py-16">
-          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border/60 bg-card shadow-2xl">
+        <section className="px-4 py-32 md:px-12 md:py-40">
+          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] border border-border/20 bg-background/20 backdrop-blur-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]">
             {/* ambient */}
-            <div className="pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-primary/25 blur-3xl" />
-            <div className="pointer-events-none absolute -right-32 -bottom-32 h-80 w-80 rounded-full bg-accent/15 blur-3xl" />
+            <div className="pointer-events-none absolute -left-32 -top-32 h-[30rem] w-[30rem] rounded-full bg-primary/20 blur-[100px]" />
+            <div className="pointer-events-none absolute -right-32 -bottom-32 h-[30rem] w-[30rem] rounded-full bg-accent/10 blur-[100px]" />
 
             <div className="relative grid gap-0 md:grid-cols-[1.05fr_1fr]">
               {/* LEFT — promo panel */}
@@ -63,13 +63,13 @@ const Orcamento = () => {
                   <Sparkles className="h-3 w-3" /> Orçamento Online
                 </span>
 
-                <h1 className="relative mt-6 font-display text-3xl font-bold leading-[1.05] text-foreground md:text-5xl">
+                <h1 className="relative mt-8 font-display text-4xl font-extrabold tracking-tight leading-[1.05] text-foreground md:text-5xl lg:text-6xl">
                   Conserte seu<br />
                   celular com a<br />
                   <span className="text-gradient">Chriscell.</span>
                 </h1>
 
-                <p className="relative mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground md:text-base">
+                <p className="relative mt-6 max-w-sm text-sm md:text-base leading-relaxed text-muted-foreground font-light">
                   Preencha em menos de 1 minuto. Sua mensagem chega direto no nosso WhatsApp.
                 </p>
 
@@ -119,15 +119,15 @@ const Orcamento = () => {
                     animate={{ scale: 1, opacity: 1 }}
                     className="flex flex-col items-center gap-4 rounded-2xl border border-primary/30 bg-primary/5 p-10 text-center"
                   >
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/15 ring-1 ring-primary/30">
-                      <CheckCircle className="h-9 w-9 text-primary" />
+                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-accent/5 ring-1 ring-primary/20 shadow-lg">
+                      <CheckCircle className="h-10 w-10 text-primary" />
                     </div>
-                    <h2 className="font-display text-2xl font-bold text-foreground">Orçamento enviado!</h2>
-                    <p className="max-w-xs text-sm text-muted-foreground">
+                    <h2 className="font-display text-3xl font-extrabold tracking-tight text-foreground">Orçamento enviado!</h2>
+                    <p className="max-w-xs text-base text-muted-foreground font-light leading-relaxed">
                       Sua mensagem foi aberta no WhatsApp. Responderemos em breve!
                     </p>
-                    <button onClick={() => setSent(false)} className="mt-2 inline-flex items-center gap-1 text-sm text-primary hover:underline">
-                      Enviar outro orçamento <ArrowRight className="h-3.5 w-3.5" />
+                    <button onClick={() => setSent(false)} className="mt-4 inline-flex items-center gap-2 font-display text-sm font-bold tracking-wider uppercase text-primary hover:text-accent transition-colors">
+                      Enviar outro orçamento <ArrowRight className="h-4 w-4" />
                     </button>
                   </motion.div>
                 ) : (
@@ -225,13 +225,13 @@ const Orcamento = () => {
 
                     <button
                       type="submit"
-                      className="group mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 font-display text-sm font-bold uppercase tracking-[0.15em] text-primary-foreground transition-all glow-primary hover:glow-primary-strong"
+                      className="group mt-4 flex w-full items-center justify-center gap-3 rounded-full bg-primary px-6 py-5 font-display text-sm font-bold uppercase tracking-[0.2em] text-primary-foreground transition-all duration-300 hover:shadow-[0_10px_30px_-10px_hsl(var(--primary))] hover:-translate-y-1"
                     >
                       Enviar via WhatsApp
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
                     </button>
 
-                    <p className="pt-1 text-center text-[11px] text-muted-foreground">
+                    <p className="pt-2 text-center text-xs font-light text-muted-foreground">
                       Ao enviar, abriremos o WhatsApp com sua mensagem preenchida.
                     </p>
                   </motion.form>

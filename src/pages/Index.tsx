@@ -15,6 +15,7 @@ import heroBg640 from "@/assets/real-service-1-640.jpg";
 import heroPhone from "@/assets/hero-phone-clean.png";
 import mascot from "@/assets/mascot-chriscell.png";
 import SEO from "@/components/SEO";
+import Header from "@/components/Header";
 
 import serviceScreen from "@/assets/real-service-screen.jpg";
 import serviceScreen1024 from "@/assets/real-service-screen-1024.jpg";
@@ -72,13 +73,14 @@ const Index = () => {
   return (
   <>
     <SEO />
+    <Header />
     <CartDrawer />
     <WhatsAppFloat />
 
-    <main>
+    <main className="pt-24">
       {/* Hero — Marshall-style editorial card */}
-      <section className="px-3 py-6 md:px-8 md:py-12">
-        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-border/60 bg-card shadow-2xl">
+      <section className="px-4 py-8 md:px-12 md:py-16">
+        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-border/20 bg-background/20 backdrop-blur-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]">
           {/* background photo + gradient */}
           <div className="absolute inset-0">
             <BlurImage
@@ -93,38 +95,8 @@ const Index = () => {
               wrapperClassName="absolute inset-0"
               imgClassName="opacity-25"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/85 to-primary/30" />
-            <div className="absolute -bottom-32 left-1/2 h-[400px] w-[140%] -translate-x-1/2 rounded-[50%] bg-background/70 blur-2xl" />
-          </div>
-
-          {/* inner card header */}
-          <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 px-6 pt-6 md:px-12 md:pt-8">
-            <Link to="/" className="font-display text-xl italic tracking-tight text-foreground md:text-2xl">
-              Chriscell
-            </Link>
-            <nav className="flex flex-wrap items-center gap-2 md:gap-4">
-              <Link to="/loja" className="text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground/80 transition hover:text-foreground sm:text-xs">
-                Loja
-              </Link>
-              <Link
-                to="/orcamento"
-                className="rounded-full border border-primary px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground md:px-5 md:text-xs"
-              >
-                Orçamento
-              </Link>
-              <button
-                onClick={() => openCart(true)}
-                aria-label="Abrir carrinho"
-                className="relative text-foreground/80 transition-colors hover:text-primary"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                {totalItems > 0 && (
-                  <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-                    {totalItems}
-                  </span>
-                )}
-              </button>
-            </nav>
+            <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/80 to-primary/40 mix-blend-multiply" />
+            <div className="absolute -bottom-32 left-1/2 h-[400px] w-[140%] -translate-x-1/2 rounded-[50%] bg-background/80 blur-[100px]" />
           </div>
 
           {/* hero body */}
@@ -136,8 +108,8 @@ const Index = () => {
               transition={{ duration: 0.7 }}
               className="relative pl-5 md:pl-6"
             >
-              <span className="absolute left-0 top-1 h-[80%] w-[3px] rounded-full bg-primary" />
-              <h1 className="font-display text-3xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl">
+              <span className="absolute left-0 top-1 h-[85%] w-[4px] rounded-full bg-gradient-to-b from-primary to-accent" />
+              <h1 className="font-display text-4xl font-extrabold tracking-tight leading-[1.1] text-foreground md:text-6xl lg:text-7xl">
                 ChrisCell.<br />
                 A assistência<br />
                 que resolve seu celular.
@@ -173,7 +145,7 @@ const Index = () => {
           <div className="relative z-10 flex justify-center pb-10 md:pb-12">
             <Link
               to="/orcamento"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-primary px-10 py-3 font-display text-xs font-bold uppercase tracking-[0.25em] text-primary transition-all hover:bg-primary hover:text-primary-foreground hover:glow-primary-strong"
+              className="inline-flex items-center gap-3 rounded-full bg-primary/10 border-2 border-primary/50 px-12 py-4 font-display text-xs font-bold uppercase tracking-[0.3em] text-primary transition-all duration-500 hover:bg-primary hover:text-primary-foreground hover:-translate-y-1 hover:glow-primary-strong hover:border-primary"
             >
               Orçamento Já
             </Link>
@@ -199,10 +171,10 @@ const Index = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="flex flex-col items-center text-center"
+                  className="group flex flex-col items-center text-center cursor-default"
                 >
-                  <f.icon className="mb-3 h-7 w-7 text-primary" strokeWidth={1.6} />
-                  <span className="whitespace-pre-line text-xs leading-snug text-muted-foreground">
+                  <f.icon className="mb-4 h-8 w-8 text-primary/70 transition-all duration-300 group-hover:text-primary group-hover:-translate-y-1 group-hover:scale-110" strokeWidth={1.5} />
+                  <span className="whitespace-pre-line text-xs leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
                     {f.label}
                   </span>
                 </motion.div>
@@ -213,11 +185,11 @@ const Index = () => {
       </section>
 
       {/* Services — zigzag fluid layout */}
-      <section className="py-24">
+      <section className="py-32 md:py-48">
         <div className="container">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-16 text-center">
-            <motion.span variants={fadeUp} custom={0} className="mb-3 block font-display text-xs font-bold uppercase tracking-[0.3em] text-primary">Nossos Serviços</motion.span>
-            <motion.h2 variants={fadeUp} custom={1} className="font-display text-3xl font-bold leading-tight text-foreground md:text-4xl">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-24 text-center">
+            <motion.span variants={fadeUp} custom={0} className="mb-4 block font-display text-xs font-bold uppercase tracking-[0.4em] text-primary">Nossos Serviços</motion.span>
+            <motion.h2 variants={fadeUp} custom={1} className="font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
               Especialistas em <span className="text-gradient">smartphones</span>
             </motion.h2>
           </motion.div>
@@ -273,19 +245,19 @@ const Index = () => {
                     <span className="mb-2 block font-display text-xs font-bold uppercase tracking-[0.3em] text-primary">
                       0{i + 1} — Serviço
                     </span>
-                    <h3 className="mb-4 font-display text-2xl font-bold text-foreground md:text-3xl">
+                    <h3 className="mb-4 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
                       {s.title}
                     </h3>
-                    <p className="mb-6 max-w-md text-muted-foreground md:text-lg">
+                    <p className="mb-8 max-w-md text-muted-foreground leading-relaxed md:text-lg font-light">
                       {s.desc}
                     </p>
                     <Link
                       to="/orcamento"
-                      className={`inline-flex items-center gap-2 font-display text-sm font-semibold text-primary transition-all hover:gap-3 ${
+                      className={`group inline-flex items-center gap-3 font-display text-sm font-semibold text-primary transition-all duration-300 hover:text-accent ${
                         isLeft ? "" : "md:flex-row-reverse"
                       }`}
                     >
-                      Orçar este serviço <ArrowRight className={`h-4 w-4 ${isLeft ? "" : "md:rotate-180"}`} />
+                      Orçar este serviço <ArrowRight className={`h-4 w-4 transition-transform duration-300 group-hover:translate-x-2 ${isLeft ? "" : "md:rotate-180 group-hover:-translate-x-2"}`} />
                     </Link>
                   </div>
                 </motion.div>
@@ -297,15 +269,15 @@ const Index = () => {
 
 
       {/* Differentials */}
-      <section className="relative overflow-hidden border-y border-border/50 bg-card py-24">
+      <section className="relative overflow-hidden border-y border-border/20 bg-background/50 backdrop-blur-3xl py-32 md:py-40">
         {/* ambient blobs */}
-        <div className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
-        <div className="pointer-events-none absolute -right-32 bottom-10 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
+        <div className="pointer-events-none absolute -left-32 top-10 h-96 w-96 rounded-full bg-primary/10 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-32 bottom-10 h-96 w-96 rounded-full bg-accent/5 blur-[100px]" />
 
         <div className="container relative">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-16 text-center">
-            <motion.span variants={fadeUp} custom={0} className="mb-3 block font-display text-xs font-bold uppercase tracking-[0.3em] text-primary">Por que a Chriscell?</motion.span>
-            <motion.h2 variants={fadeUp} custom={1} className="font-display text-3xl font-bold leading-tight text-foreground md:text-4xl">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-24 text-center">
+            <motion.span variants={fadeUp} custom={0} className="mb-4 block font-display text-xs font-bold uppercase tracking-[0.4em] text-primary">Por que a Chriscell?</motion.span>
+            <motion.h2 variants={fadeUp} custom={1} className="font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
               Diferenciais que <span className="text-gradient">fazem a diferença</span>
             </motion.h2>
           </motion.div>
@@ -325,20 +297,20 @@ const Index = () => {
                   0{i + 1}
                 </span>
 
-                <div className="relative h-full overflow-hidden rounded-[28px] border border-border/60 bg-background/60 p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/40 hover:bg-background/80">
+                <div className="relative h-full overflow-hidden rounded-[2rem] border border-border/20 bg-background/30 p-10 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/40 hover:bg-background/60 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]">
                   {/* corner glow */}
-                  <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/20 blur-2xl transition-opacity duration-500 group-hover:opacity-100 opacity-50" />
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/20 blur-3xl transition-opacity duration-700 group-hover:opacity-100 opacity-30" />
 
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/30 to-accent/10 ring-1 ring-primary/30">
-                    <d.icon className="h-7 w-7 text-foreground" strokeWidth={1.6} />
+                  <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-accent/5 ring-1 ring-primary/20 transition-transform duration-500 group-hover:scale-110">
+                    <d.icon className="h-7 w-7 text-foreground" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="mb-3 font-display text-xl font-bold leading-tight text-foreground">
+                  <h3 className="mb-4 font-display text-2xl font-bold tracking-tight text-foreground">
                     {d.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{d.desc}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground font-light">{d.desc}</p>
 
-                  <div className="mt-6 h-px w-12 bg-gradient-to-r from-primary to-transparent" />
+                  <div className="mt-8 h-px w-12 bg-gradient-to-r from-primary to-transparent transition-all duration-500 group-hover:w-24" />
                 </div>
               </motion.div>
             ))}
@@ -396,11 +368,11 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="relative overflow-hidden border-y border-border/50 bg-card py-20">
+      <section className="relative overflow-hidden border-y border-border/20 bg-background/40 py-32 md:py-40">
         <div className="container">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-12 text-center">
-            <motion.span variants={fadeUp} custom={0} className="mb-3 block font-display text-xs font-bold uppercase tracking-[0.3em] text-primary">Depoimentos</motion.span>
-            <motion.h2 variants={fadeUp} custom={1} className="font-display text-3xl font-bold leading-tight text-foreground md:text-4xl">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-16 text-center">
+            <motion.span variants={fadeUp} custom={0} className="mb-4 block font-display text-xs font-bold uppercase tracking-[0.4em] text-primary">Depoimentos</motion.span>
+            <motion.h2 variants={fadeUp} custom={1} className="font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
               O que nossos <span className="text-gradient">clientes dizem</span>
             </motion.h2>
           </motion.div>
@@ -432,36 +404,39 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="py-32 md:py-40">
         <div className="container">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="rounded-2xl border border-primary/20 bg-primary/5 p-10 text-center md:p-16"
+            className="relative overflow-hidden rounded-[2.5rem] border border-primary/20 bg-primary/5 p-12 text-center md:p-24 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur-xl"
           >
-            <motion.h2 variants={fadeUp} custom={0} className="mb-4 font-display text-3xl font-bold text-foreground md:text-4xl">
-              Celular com problema? <span className="text-gradient">Resolva agora!</span>
-            </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="mx-auto mb-8 max-w-md text-muted-foreground">
-              Faça seu orçamento online e receba uma resposta rápida. Sem compromisso.
-            </motion.p>
-            <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4">
-              <Link
-                to="/orcamento"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-4 font-display text-sm font-semibold text-primary-foreground glow-primary hover:glow-primary-strong"
-              >
-                Fazer orçamento <ArrowRight className="h-4 w-4" />
-              </Link>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent mix-blend-overlay" />
+            <div className="relative z-10">
+              <motion.h2 variants={fadeUp} custom={0} className="mb-6 font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+                Celular com problema? <span className="text-gradient block mt-2">Resolva agora!</span>
+              </motion.h2>
+              <motion.p variants={fadeUp} custom={1} className="mx-auto mb-10 max-w-lg text-muted-foreground leading-relaxed font-light text-lg">
+                Faça seu orçamento online e receba uma resposta rápida. Sem compromisso, com total transparência.
+              </motion.p>
+              <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4">
+                <Link
+                  to="/orcamento"
+                  className="inline-flex items-center gap-3 rounded-full bg-primary px-10 py-5 font-display text-sm font-bold tracking-wider text-primary-foreground transition-transform hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_hsl(var(--primary))]"
+                >
+                  Fazer orçamento <ArrowRight className="h-4 w-4" />
+                </Link>
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá, vim pelo site da Chriscell")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-border bg-secondary px-8 py-4 font-display text-sm font-semibold text-secondary-foreground"
+                className="inline-flex items-center gap-3 rounded-full border-2 border-border/50 bg-secondary/80 backdrop-blur px-10 py-5 font-display text-sm font-bold tracking-wider text-secondary-foreground transition-transform hover:-translate-y-1 hover:border-primary/40 hover:bg-secondary"
               >
-                <MessageCircle className="h-4 w-4" /> WhatsApp
+                <MessageCircle className="h-5 w-5" /> WhatsApp
               </a>
             </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
